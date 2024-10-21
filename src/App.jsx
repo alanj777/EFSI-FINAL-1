@@ -20,7 +20,8 @@ function App() {
           <Route exact path="/" element={<ListadoEventos />} />
           <Route exact path="/login" element={<InicioSesion />} />
           <Route exact path="/register" element={<Registro />} />
-          <Route exact path="/event/:id" element={<DetalleEvento />} /> {/* Ruta para DetalleEvento */}
+          <Route exact path="/event/" element={<ListadoEventos />} /> 
+          <Route exact path="/event/:id" element={<DetalleEvento />} />
         </Routes>   
       </main>
       <footer>
@@ -31,3 +32,4 @@ function App() {
 }
 
 export default App;
+//Entregar antes del domingo

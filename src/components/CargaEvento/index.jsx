@@ -12,48 +12,32 @@ const CargarEvento = () => {
         category: '',
         capacity: 0,
     });
-    const [userId, setUserId] = useState(null); // Estado para almacenar el userId del usuario logueado
+    const { user, token } = useContext(AuthContext);
     const [error, setError] = useState('');
-
-    useEffect(() => {
-        const fetchUserId = async () => {
-            try {
-                const response = await axios.get(`${config.url}api/user/profile`, {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem('token')}` // El token debe estar almacenado y disponible
-                    }
-                });
-                setUserId(response.data.id); // Ajusta según la estructura de tu respuesta
-            } catch (error) {
-                console.error('Error fetching user ID:', error);
-                setError('No se pudo obtener la información del usuario.');
-            }
-        };
-
-        fetchUserId();
-    }, []);
-
+  
     const handleChange = (e) => {
-        setEventData({
-            ...eventData,
-            [e.target.name]: e.target.value,
-        });
+      setEventData({
+        ...eventData,
+        [e.target.name]: e.target.value,
+      });
     };
-
+  
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            //const userId=0;
-            await axios.post(`${config.url}api/event`, { ...eventData, userId });
-            alert('Evento creado con éxito');
-        } catch (error) {
-            console.error('Error creando evento:', error);
-            alert('No se pudo crear el evento.');
-        }
+      e.preventDefault();
+      try {
+        await axios.post(`${config.url}api/event`, { ...eventData, userId: user.id }, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        alert('Evento creado con éxito');
+      } catch (error) {
+        console.error('Error creando evento:', error);
+        setError('No se pudo crear el evento.');
+      }
     };
-
     return (
-        <div className="event-form">
+        <div className="event-form"> 
             <h1>Cargar Evento</h1>
             {error && <p className="error">{error}</p>}
             <form onSubmit={handleSubmit}>
@@ -94,6 +78,22 @@ const CargarEvento = () => {
                     type="number"
                     name="capacity"
                     value={eventData.capacity}
+                    onChange={handleChange}
+                    required
+                />
+                 <FormInput
+                    label="Duración (en minutos)"
+                    type="number"
+                    name="duration_in_minutes"
+                    value={eventData.duration_in_minutes}
+                    onChange={handleChange}
+                    required
+                />
+                <FormInput
+                    label="Precio"
+                    type="number"
+                    name="price"
+                    value={eventData.price}
                     onChange={handleChange}
                     required
                 />
