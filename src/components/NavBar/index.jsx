@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import logo from "../../fotos/logo.jpg";
-import userPhoto from "../../fotos/userPhoto.png";
+import logo from "../../fotos/logo.png";
+import userPhoto from "../../fotos/userPhoto.jpg";
 import { AuthContext } from "../../AuthContext";
 import React, { useContext, useState, useEffect } from 'react';
 import axios from "axios";

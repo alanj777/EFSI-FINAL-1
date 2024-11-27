@@ -14,6 +14,12 @@ h2 {
     color: #333;
 }
 
+.error-text {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
 .form-group {
     margin-bottom: 20px;
     text-align: left;
@@ -36,7 +42,7 @@ h2 {
 .btn-primary {
     width: 100%;
     padding: 10px;
-    background-color: #007bff;
+    background-color: #004a99;
     color: white;
     border: none;
     border-radius: 5px;
@@ -44,17 +50,7 @@ h2 {
 }
 
 .btn-primary:hover {
-    background-color: #0056b3;
-}
-
-.error-text {
-    color: red;
-    font-size: 12px;
-    margin-top: 5px;
-}
-
-.register-link {
-    margin-top: 15px;
+    background-color: #004a99;
 }
 
 .register-link p {
@@ -63,7 +59,7 @@ h2 {
 }
 
 .register-link a {
-    color: #007bff;
+    color: #004a99;
     text-decoration: none;
 }
 
